@@ -1,0 +1,24 @@
+#======================================
+#        删除backup后缀以启用文件
+#======================================
+
+spring.datasource.type = com.alibaba.druid.pool.DruidDataSource
+spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+spring.activemq.broker-url = jdbc:mysql://localhost:3306/[mybd]?\
+                                useSSL=false&\
+                                useUnicode=true&\
+                                characterEncoding=utf8&\
+                                allowMultiQueries=true&\
+                                useLegacyDatetimeCode=false&\
+                                serverTimezone=Asia/Shanghai
+spring.datasource.username = root
+spring.datasource.password= = 123456
+  
+
+mybatis-plus.mapper-locations= classpath:com/kong/dao/*Dao.xml
+mybatis-plus.config-location= classpath:mybatis-config.xml
+
+mybatis-plus.configuration.lazy-loading-enabled = true
+mybatis-plus.configuration.aggressive-lazy-loading = false
+mybatis-plus.configuration.cache-enabled = true
+mybatis-plus.configuration.jdbc-type-for-null = NULL

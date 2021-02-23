@@ -1,0 +1,26 @@
+
+#======================================
+#        添加backup后缀以关闭文件
+#======================================
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/[mydb]?
+      useSSL=false&
+      useUnicode=true&
+      characterEncoding=utf8&
+      allowMultiQueries=true&
+      useLegacyDatetimeCode=false&
+      serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis-plus:
+  mapper-locations: classpath:com/kong/dao/*Dao.xml
+  configuration:
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+    cache-enabled: true
+    jdbc-type-for-null: NULL
