@@ -1,7 +1,7 @@
-package com.kong.service;
+package com.kong.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kong.vo.User;
+import com.kong.entity.vo.User;
 
 public interface IUserService extends IService<User> {
     //...

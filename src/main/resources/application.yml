@@ -1,4 +1,3 @@
-
 #======================================
 #        添加backup后缀以关闭文件
 #======================================
@@ -6,13 +5,14 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/[mydb]?
-#      useSSL=false&
-#      useUnicode=true&
-#      characterEncoding=utf8&
-#      allowMultiQueries=true&
-#      useLegacyDatetimeCode=false&
-#      serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/mydb?
+      useSSL=false&
+      useUnicode=true&
+      characterEncoding=utf8&
+      allowMultiQueries=true&
+      allowPublicKeyRetrieval=true&
+      useLegacyDatetimeCode=false&
+      serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource

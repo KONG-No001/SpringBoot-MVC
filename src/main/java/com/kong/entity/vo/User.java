@@ -1,4 +1,4 @@
-package com.kong.vo;
+package com.kong.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -7,13 +7,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("`user`")
+@TableName("`users`")
 public class User {
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    @TableField("user_name")
+    @TableField("username")
     private String name;
-    @TableField("user_password")
+    @TableField("password")
     private String password;
+    @TableField("enabled")
+    private Boolean enabled;
 
 }

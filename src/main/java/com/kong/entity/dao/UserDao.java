@@ -1,7 +1,7 @@
-package com.kong.dao;
+package com.kong.entity.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kong.vo.User;
+import com.kong.entity.vo.User;
 
 public interface UserDao extends BaseMapper<User> {
     //...
