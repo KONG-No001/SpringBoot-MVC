@@ -3,6 +3,7 @@ package com.kong.core.page.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * 页面查询请求对象
@@ -21,28 +22,6 @@ public class PageRequest {
     public PageRequest(List<Search> searches, List<Sort> sorts) {
         this.searches = searches;
         this.sorts = sorts;
-    }
-
-    /**
-     * Returns the list of searches.
-     * Initializes the list if it is null.
-     *
-     * @return List of searches.
-     */
-    public List<Search> getSearches() {
-        if (this.searches == null) {
-            this.searches = new ArrayList<>();
-        }
-        return this.searches;
-    }
-
-    /**
-     * Sets the list of searches.
-     *
-     * @param searches List of Search objects to set.
-     */
-    public void setSearches(List<Search> searches) {
-        this.searches = searches;
     }
 
     /**
@@ -84,6 +63,28 @@ public class PageRequest {
     }
 
     /**
+     * Returns the list of searches.
+     * Initializes the list if it is null.
+     *
+     * @return List of searches.
+     */
+    public List<Search> getSearches() {
+        if (this.searches == null) {
+            this.searches = new ArrayList<>();
+        }
+        return this.searches;
+    }
+
+    /**
+     * Sets the list of searches.
+     *
+     * @param searches List of Search objects to set.
+     */
+    public void setSearches(List<Search> searches) {
+        this.searches = searches;
+    }
+
+    /**
      * Removes a search from the list based on the field name.
      *
      * @param field The field to search for and remove.
@@ -103,26 +104,6 @@ public class PageRequest {
     }
 
     /**
-     * Retrieves the first Search object that matches the specified field.
-     *
-     * @param field The field to search for.
-     * @return The matching Search object or null if not found.
-     */
-    public Search getField(String field) {
-        return getSearches().stream().filter(t -> field.equals(t.getField())).findFirst().orElse(null);
-    }
-
-    /**
-     * Retrieves a list of Search objects that match the specified field.
-     *
-     * @param field The field to search for.
-     * @return List of matching Search objects.
-     */
-    public List<Search> getFields(String field) {
-        return getSearches().stream().filter(t -> field.equals(t.getField())).toList();
-    }
-
-    /**
      * Retrieves the value of the first Search object that matches the specified field.
      *
      * @param field The field to search for.
@@ -139,7 +120,7 @@ public class PageRequest {
      * @return List of values from matching Search objects.
      */
     public List<Object> getFieldDatas(String field) {
-        return getSearches().stream().filter(t -> field.equals(t.getField())).map(t -> t.value).toList();
+        return getSearches().stream().filter(t -> field.equals(t.getField())).map(t -> t.value).collect(Collectors.toList());
     }
 
     /**
@@ -156,6 +137,16 @@ public class PageRequest {
     }
 
     /**
+     * Retrieves the first Search object that matches the specified field.
+     *
+     * @param field The field to search for.
+     * @return The matching Search object or null if not found.
+     */
+    public Search getField(String field) {
+        return getSearches().stream().filter(t -> field.equals(t.getField())).findFirst().orElse(null);
+    }
+
+    /**
      * Executes the provided function on the list of Search objects that match the specified field.
      *
      * @param field The field to search for.
@@ -163,7 +154,17 @@ public class PageRequest {
      */
     public void whenFields(String field, Consumer<List<Search>> fun) {
         List<Search> s = getFields(field);
-        if (!s.isEmpty()) fun.accept(s);
+        if (!s.isEmpty()) { fun.accept(s); }
+    }
+
+    /**
+     * Retrieves a list of Search objects that match the specified field.
+     *
+     * @param field The field to search for.
+     * @return List of matching Search objects.
+     */
+    public List<Search> getFields(String field) {
+        return getSearches().stream().filter(t -> field.equals(t.getField())).collect(Collectors.toList());
     }
 
 }
