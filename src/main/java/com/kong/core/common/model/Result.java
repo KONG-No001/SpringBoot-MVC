@@ -1,7 +1,7 @@
-package com.kong.core.common;
+package com.kong.core.common.model;
 
 /**
- * 表示操作结果的类，包含成功状态、代码和结果数据。
+ * 表示操作结果的类。包含成功状态、代码和结果数据。
  *
  * @param <T> 结果数据类型。
  * @author Luojun
@@ -11,26 +11,26 @@ package com.kong.core.common;
 public class Result<T> {
 
     /**
-     * Indicates whether the operation was successful.
+     * 指示操作是否成功。
      */
     protected boolean success;
 
     /**
-     * The status code associated with the result.
+     * 与结果关联的状态代码。
      */
     protected ResponseCode code;
 
     /**
-     * The actual result data of the operation.
+     * 操作的实际结果数据。
      */
     protected T result;
 
     /**
-     * Static factory method to create a success result.
+     * 创建 Success Result 对象的静态工厂。
      *
-     * @param <T>    The type of the result data.
-     * @param result The result data.
-     * @return A new Result object indicating success.
+     * @param <T>    结果数据类型。
+     * @param result 结果数据。
+     * @return 新 Success Result 对象。
      */
     public static <T> Result<T> success(T result) {
         Result<T> res = new Result<>();
@@ -41,11 +41,11 @@ public class Result<T> {
     }
 
     /**
-     * Static factory method to create a failure result.
+     * 用于 failure Result 对象的静态工厂。
      *
-     * @param <T>  The type of the result data.
-     * @param code The error code.
-     * @return A new Result object indicating failure.
+     * @param <T>  结果数据类型。
+     * @param code 错误代码。
+     * @return 新 Failure Result 对象。
      */
     public static <T> Result<T> failure(ResponseCode code) {
         Result<T> res = new Result<>();
@@ -55,54 +55,54 @@ public class Result<T> {
     }
 
     /**
-     * Gets the success status of the operation.
+     * 获取操作的成功状态。
      *
-     * @return true if the operation was successful, false otherwise.
+     * @return 如果操作成功，则为 true，否则为 false。
      */
     public boolean isSuccess() {
         return success;
     }
 
     /**
-     * Sets the success status of the operation.
+     * 设置操作的成功状态。
      *
-     * @param success true if the operation was successful, false otherwise.
+     * @param success 如果操作成功，则为 true，否则为 false。
      */
     public void setSuccess(boolean success) {
         this.success = success;
     }
 
     /**
-     * Gets the status code associated with the result.
+     * 获取与结果关联的状态代码。
      *
-     * @return The status code.
+     * @return 状态代码。
      */
     public ResponseCode getCode() {
         return code;
     }
 
     /**
-     * Sets the status code associated with the result.
+     * 设置与结果关联的状态代码。
      *
-     * @param code The status code to set.
+     * @param code 要设置的状态代码。
      */
     public void setCode(ResponseCode code) {
         this.code = code;
     }
 
     /**
-     * Gets the actual result data of the operation.
+     * 获取操作的实际结果数据。
      *
-     * @return The result data.
+     * @return 结果数据。
      */
     public T getResult() {
         return result;
     }
 
     /**
-     * Sets the actual result data of the operation.
+     * 设置操作的实际结果数据。
      *
-     * @param result The result data to set.
+     * @param result 要设置的结果数据。
      */
     public void setResult(T result) {
         this.result = result;

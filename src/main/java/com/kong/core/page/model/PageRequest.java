@@ -13,28 +13,44 @@ import java.util.stream.Collectors;
  * @since 2024/9/27
  */
 public class PageRequest {
+    /**
+     * 搜索列表
+     */
     protected List<Search> searches;
+
+    /**
+     * 排序列表
+     */
     protected List<Sort> sorts;
 
+    /**
+     * 构造一个 PageRequest 类
+     */
     public PageRequest() {
     }
 
+    /**
+     * 用给定的搜索列表和排序列表构造一个 PageRequest 类
+     *
+     * @param searches 搜索列表
+     * @param sorts    排序列表
+     */
     public PageRequest(List<Search> searches, List<Sort> sorts) {
         this.searches = searches;
         this.sorts = sorts;
     }
 
     /**
-     * Returns the list of sorts.
+     * 返回排序列表。
      *
-     * @return List of sorts.
+     * @return 排序列表。
      */
     public List<Sort> getSorts() {
         return sorts;
     }
 
     /**
-     * Sets the list of sorts.
+     * 设置排序列表。
      *
      * @param sorts List of Sort objects to set.
      */
@@ -43,30 +59,30 @@ public class PageRequest {
     }
 
     /**
-     * Adds a new search with the specified field, operation, and value.
+     * 添加具有指定字段、操作和值的新搜索。
      *
-     * @param field     The field to search on.
-     * @param operation The operation to perform.
-     * @param value     The value for the search.
+     * @param field     要搜索的字段。
+     * @param operation 要执行的操作。
+     * @param value     搜索的值。
      */
     public void addSearch(String field, String operation, Object value) {
         addSearch(new Search(field, operation, value));
     }
 
     /**
-     * Adds a Search object to the list of searches.
+     * 将 Search 对象添加到搜索列表中。
      *
-     * @param search The Search object to add.
+     * @param search 要添加的 Search 对象。
      */
     public void addSearch(Search search) {
         getSearches().add(search);
     }
 
     /**
-     * Returns the list of searches.
-     * Initializes the list if it is null.
+     * 返回搜索列表。
+     * 如果列表为 null，则初始化列表。
      *
-     * @return List of searches.
+     * @return 搜索列表。
      */
     public List<Search> getSearches() {
         if (this.searches == null) {
@@ -76,58 +92,58 @@ public class PageRequest {
     }
 
     /**
-     * Sets the list of searches.
+     * 设置搜索列表。
      *
-     * @param searches List of Search objects to set.
+     * @param searches 要设置的 Search 对象列表。
      */
     public void setSearches(List<Search> searches) {
         this.searches = searches;
     }
 
     /**
-     * Removes a search from the list based on the field name.
+     * 根据字段名称从列表中删除搜索。
      *
-     * @param field The field to search for and remove.
+     * @param field 要搜索和删除的字段。
      */
     public void removeSearch(String field) {
         getSearches().removeIf(t -> field.equals(t.getField()));
     }
 
     /**
-     * Checks if a search for the specified field exists.
+     * 检查是否存在对指定字段的搜索。
      *
-     * @param field The field to check.
-     * @return true if the field exists, false otherwise.
+     * @param field 要检查的字段。
+     * @return 如果字段存在，则为 true，否则为 false。
      */
     public boolean hasField(String field) {
         return getSearches().stream().anyMatch(t -> field.equals(t.getField()));
     }
 
     /**
-     * Retrieves the value of the first Search object that matches the specified field.
+     * 检索与指定字段匹配的第一个 Search 对象的值。
      *
-     * @param field The field to search for.
-     * @return The value of the matching Search object or null if not found.
+     * @param field 要搜索的字段。
+     * @return 匹配的 Search 对象的值，如果未找到，则为 null。
      */
     public Object getFieldData(String field) {
         return getSearches().stream().filter(t -> field.equals(t.getField())).findFirst().map(t -> t.value).orElse(null);
     }
 
     /**
-     * Retrieves the values of all Search objects that match the specified field.
+     * 检索与指定字段匹配的所有 Search 对象的值。
      *
-     * @param field The field to search for.
-     * @return List of values from matching Search objects.
+     * @param field 要搜索的字段。
+     * @return 来自匹配 Search 对象的值列表。
      */
     public List<Object> getFieldDatas(String field) {
         return getSearches().stream().filter(t -> field.equals(t.getField())).map(t -> t.value).collect(Collectors.toList());
     }
 
     /**
-     * Executes the provided function on the Search object that matches the specified field.
+     * 在与指定字段匹配的 Search 对象上执行提供的函数。
      *
-     * @param field The field to search for.
-     * @param fun   The function to execute on the matching Search object.
+     * @param field 要搜索的字段。
+     * @param fun   要对匹配的 Search 对象执行的函数。
      */
     public void whenField(String field, Consumer<Search> fun) {
         Search search = getField(field);
@@ -137,20 +153,20 @@ public class PageRequest {
     }
 
     /**
-     * Retrieves the first Search object that matches the specified field.
+     * 检索与指定字段匹配的第一个 Search 对象。
      *
-     * @param field The field to search for.
-     * @return The matching Search object or null if not found.
+     * @param field 要搜索的字段。
+     * @return 匹配的 Search 对象或 null（如果未找到）。
      */
     public Search getField(String field) {
         return getSearches().stream().filter(t -> field.equals(t.getField())).findFirst().orElse(null);
     }
 
     /**
-     * Executes the provided function on the list of Search objects that match the specified field.
+     * 在与指定字段匹配的 Search 对象列表上执行提供的函数。
      *
-     * @param field The field to search for.
-     * @param fun   The function to execute on the matching list of Search objects.
+     * @param field 要搜索的字段。
+     * @param fun   要对 Search 对象的匹配列表执行的函数。
      */
     public void whenFields(String field, Consumer<List<Search>> fun) {
         List<Search> s = getFields(field);
@@ -158,10 +174,10 @@ public class PageRequest {
     }
 
     /**
-     * Retrieves a list of Search objects that match the specified field.
+     * 检索与指定字段匹配的 Search 对象的列表。
      *
-     * @param field The field to search for.
-     * @return List of matching Search objects.
+     * @param field 要搜索的字段。
+     * @return 匹配的 Search 对象列表。
      */
     public List<Search> getFields(String field) {
         return getSearches().stream().filter(t -> field.equals(t.getField())).collect(Collectors.toList());

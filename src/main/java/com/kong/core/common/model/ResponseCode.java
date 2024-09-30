@@ -1,11 +1,15 @@
-package com.kong.core.common;
+package com.kong.core.common.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
- * Enum representing standard response codes and their descriptions.
+ * 标准响应代码及其描述的枚举。
+ *
  * @author Luojun
  * @version v1.0.0
  * @since 2024/9/28
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ResponseCode {
 
     // Success
@@ -27,20 +31,20 @@ public enum ResponseCode {
     SERVICE_UNAVAILABLE(503, "Service Unavailable");
 
     /**
-     * The response code.
+     * 响应代码。
      */
     private final int code;
 
     /**
-     * The description of the response code.
+     * 响应代码的描述。
      */
     private final String description;
 
     /**
-     * Constructs a ResponseCode enum with the given code and description.
+     * 使用给定的代码和描述构造 ResponseCode 枚举。
      *
-     * @param code        The response code.
-     * @param description The description of the response code.
+     * @param code        响应代码。
+     * @param description 响应代码的描述。
      */
     ResponseCode(int code, String description) {
         this.code = code;
@@ -48,10 +52,10 @@ public enum ResponseCode {
     }
 
     /**
-     * Returns the ResponseCode enum corresponding to the given code.
+     * 返回与给定代码对应的 ResponseCode 枚举。
      *
-     * @param code The response code to look up.
-     * @return The corresponding ResponseCode, or null if the code is not recognized.
+     * @param code 要查找的响应代码。
+     * @return 相应的 ResponseCode，如果代码无法识别，则为 null。
      */
     public static ResponseCode fromCode(int code) {
         for (ResponseCode responseCode : ResponseCode.values()) {
@@ -59,22 +63,22 @@ public enum ResponseCode {
                 return responseCode;
             }
         }
-        return null; // or throw an exception if appropriate
+        return null; // 或引发异常（如果可以的话）
     }
 
     /**
-     * Gets the response code.
+     * 获取响应代码。
      *
-     * @return The response code.
+     * @return 响应代码。
      */
     public int getCode() {
         return code;
     }
 
     /**
-     * Gets the description of the response code.
+     * 获取响应代码的描述。
      *
-     * @return The description of the response code.
+     * @return 响应代码的描述。
      */
     public String getDescription() {
         return description;
