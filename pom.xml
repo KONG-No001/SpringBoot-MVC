@@ -97,6 +97,13 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!--    Kytils  -->
+        <dependency>
+            <groupId>com.kongyu</groupId>
+            <artifactId>Kytils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
