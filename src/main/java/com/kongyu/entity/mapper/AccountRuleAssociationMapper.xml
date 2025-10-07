@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kongyu.entity.mapper.AccountRuleAssociationMapper">
+
+
+    <select id="listRolesByAccountId" parameterType="int" resultType="com.kongyu.entity.vo.Role">
+    <![CDATA[
+        SELECT
+            r.*
+        FROM
+            sys_account_rule_association ara
+            LEFT JOIN sys_role r
+            ON r.id = ara.role_id
+            LEFT JOIN sys_account a
+            ON a.id = ara.account_id
+        WHERE
+            a.id = #{accountId}
+        ]]>
+    </select>
+
+</mapper>

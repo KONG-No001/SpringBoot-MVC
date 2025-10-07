@@ -18,7 +18,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis-plus:
-  mapper-locations: classpath:com/kongyu/engity/dao/*Dao.xml
+  mapper-locations: classpath:com/kongyu/engity/mapper/*Mapper.xml
   configuration:
     lazy-loading-enabled: true
     aggressive-lazy-loading: false

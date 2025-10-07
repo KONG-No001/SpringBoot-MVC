@@ -1,6 +1,5 @@
 package com.kongyu.entity.vo;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,16 +10,19 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("`authorities`")
-public class Authorities extends AbstractVo {
+@TableName("`sys_account`")
+public class Account extends AbstractVo {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField("authority")
-    private String authority;
-
     @TableField("username")
     private String username;
+
+    @TableField("password")
+    private String password;
+
+    @TableField("enabled")
+    private Boolean enabled;
 
 }
